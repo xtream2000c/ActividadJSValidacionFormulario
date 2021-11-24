@@ -20,7 +20,7 @@ function validaNombre(){
 }
 
 function validaApellido(){
-    if (!/(^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{3,16})+$/.test(document.getElementById("apellidos").value)) {
+    if (!/(^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{3,})+$/.test(document.getElementById("apellidos").value)) {
                 
         errores += "Los apellidos introducidos no son validos </br>";
 
@@ -31,8 +31,8 @@ function validaApellido(){
     }
 }
 
-function validacion(){
-    document.getElementById("formulario").preventDefault();
+function validacion(event){
+    event.preventDefault()
     errores="";
     validaNombre();
     validaApellido();
@@ -46,7 +46,6 @@ function load(){
 
     document.getElementById("nombre").addEventListener("focusout", nombreMayus, false);
     document.getElementById("apellidos").addEventListener("focusout", apellidoMayus, false);
-    document.getElementById("enviar").addEventListener("onsubmit", function(event){event.preventDefault()
-    return false}, false);
+    document.getElementById("formulario").addEventListener("submit", validacion, false);
 
 }
