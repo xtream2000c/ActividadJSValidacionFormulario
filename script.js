@@ -67,7 +67,20 @@ function validaNif(){
     }
 }
 
-
+function validaEmail(){
+    if (document.getElementById("email").value != null) {
+        if (!/(^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{3,})+$/.test(document.getElementById("email").value)) {
+                
+            errores += "El NIF introducido es incorrecto </br>";
+    
+            document.getElementById("email").focus();
+            document.getElementById("email").style.backgroundColor = "red";
+        }else{
+            document.getElementById("email").style.backgroundColor = "white";
+            
+        } 
+    }
+}
 
 function validacion(event){
     
