@@ -16,28 +16,48 @@ function validaNombre(){
         document.getElementById("nombre").style.backgroundColor = "red";
     }else{
         document.getElementById("nombre").style.backgroundColor = "white";
+        return true;
     }
 }
 
 function validaApellido(){
-    if (!/(^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{3,})+$/.test(document.getElementById("apellidos").value)) {
+    if (document.getElementById("apellidos").value != null) {
+        if (!/(^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{3,})+$/.test(document.getElementById("apellidos").value)) {
                 
-        errores += "Los apellidos introducidos no son validos </br>";
-
-        document.getElementById("apellidos").focus();
-        document.getElementById("apellidos").style.backgroundColor = "red";
-    }else{
-        document.getElementById("apellidos").style.backgroundColor = "white";
+            errores += "Los apellidos introducidos no son validos </br>";
+    
+            document.getElementById("apellidos").focus();
+            document.getElementById("apellidos").style.backgroundColor = "red";
+        }else{
+            document.getElementById("apellidos").style.backgroundColor = "white";
+            
+        } 
     }
+    
 }
 
+
+
 function validacion(event){
-    event.preventDefault()
+    
     errores="";
-    validaNombre();
+
     validaApellido();
-    document.getElementById("errores").innerHTML= errores;
-    return false;
+    validaNombre();
+    
+    if(errores!=""){
+        event.preventDefault()
+        document.getElementById("errores").innerHTML= errores;
+        return false;
+    }else{
+
+        var confirmacion = confirm('Esta a punto de enviar el formulario ¿Esta seguro?');
+
+        if (!confirmacion){
+            evento.preventDefault();
+        }
+    }
+    
 }
 
 window.onload = load;
@@ -46,6 +66,8 @@ function load(){
 
     document.getElementById("nombre").addEventListener("focusout", nombreMayus, false);
     document.getElementById("apellidos").addEventListener("focusout", apellidoMayus, false);
+    
+    
     document.getElementById("formulario").addEventListener("submit", validacion, false);
 
 }
