@@ -217,7 +217,7 @@ function validaHora(){
              * PARA LOS MINUTOS ([0-5][0-9])
              * DOS DIGITOS ENTRE 00 Y 59
              */ 
-            errores += "La hora introducidoa no cumple con el formato hh:mm </br>";
+            errores += "La hora introducido no cumple con el formato hh:mm </br>";
 
             document.getElementById("hora").focus();
             document.getElementById("hora").style.backgroundColor = "red";
